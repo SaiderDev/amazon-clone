@@ -6,13 +6,19 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import AuthContext from '../../Context/authContext.js';
 import ShoppingContext from '../../Context/Shopping/shoppingContext.js';
-
+import { auth } from '../../Firebase.js';
 
 
 const Header = () => {
-    const newContext =useContext(AuthContext)
+    // const newContext =useContext(AuthContext)
     const shoppingContext = useContext(ShoppingContext)
-    const {basket} = shoppingContext
+    const {basket,user} = shoppingContext
+
+    const handleAuthentication = () => {
+        if(user){
+            auth.signOut()
+        }
+    }
 
   return (
       <header className="header">
@@ -26,7 +32,7 @@ const Header = () => {
                     <SearchIcon className="search_icon"/>
                 </div>
                 <div className='header_nav'>
-                    {newContext.isLoggedIn?(<Link to="/">
+                    {/* {newContext.isLoggedIn?(<Link to="/">
                         <div className='header_option' onClick={newContext.onLogout}>
                             <span className='header_optionOne'>Hello User</span>
                             <span className='header_optionTwo'>Sign Out</span>
@@ -36,7 +42,14 @@ const Header = () => {
                             <span className='header_optionOne'>Hello Guest</span>
                             <span className='header_optionTwo'>Sign In</span>
                         </div>
-                    </Link>)}
+                    </Link>)} */}
+                    <Link to={!user && "/login"}>
+                        <div className='header_option' onClick={handleAuthentication}>
+                            <span className='header_optionOne'>Hello {!user?"Guest" : user.email}</span>
+                            <span className='header_optionTwo'>{user? "Sign Out": "Sign In"}</span>
+                        </div>
+                    </Link>
+                    
     
                     <Link to='/order'>
                     <div className='header_option'>

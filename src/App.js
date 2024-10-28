@@ -8,12 +8,17 @@ import ProductDetails from './Components/ProductDetails';
 import Login from './Components/Login';
 import NotFound from './Components/NotFound';
 import Orders from './Components/Orders';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import AuthContext from './Context/authContext';
+import { auth } from './Firebase';
+import ShoppingContext from './Context/Shopping/shoppingContext';
 
 
 
 function App() {
+  const shoppingContext = useContext(ShoppingContext)
+  const {setUser} = shoppingContext
+
 
   // const [isLoggedIn,setIsLoggedIn] = useState(false)
 
@@ -24,6 +29,18 @@ function App() {
   //     setIsLoggedIn(true)
   //   }
   // },[])
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      console.log("User is: ",authUser)
+
+      if(authUser){
+        setUser(authUser)
+      }
+      else{
+        setUser(null)
+      }
+    })
+     },[])
 
   // const loginHandler = (email,password) => {
   //   localStorage.setItem("isLoggedIn","1")
