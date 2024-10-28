@@ -8,13 +8,37 @@ import ProductDetails from './Components/ProductDetails';
 import Login from './Components/Login';
 import NotFound from './Components/NotFound';
 import Orders from './Components/Orders';
+import { useEffect, useState } from 'react';
+import AuthContext from './Context/authContext';
 
 
 
 function App() {
+
+  // const [isLoggedIn,setIsLoggedIn] = useState(false)
+
+  // useEffect(() => {
+  //   const userInfo = localStorage.getItem("isLoggedIn")
+
+  //   if(userInfo === '1'){
+  //     setIsLoggedIn(true)
+  //   }
+  // },[])
+
+  // const loginHandler = (email,password) => {
+  //   localStorage.setItem("isLoggedIn","1")
+  //   setIsLoggedIn(true)
+
+  // }
+
+  // const logoutHandler = () => {
+  //   localStorage.removeItem("isLoggedIn")
+  //   setIsLoggedIn(false)
+  // }
+
   return (
     <>
-      <Header/>
+      <Header />
 
         <main>
           <Switch>
@@ -34,7 +58,7 @@ function App() {
             </Route>
 
             <Route path="/login">
-              <Login/>
+              <Login  />
             </Route>
 
             <Route path="/order">
