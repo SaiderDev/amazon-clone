@@ -10,7 +10,7 @@ import { auth } from '../../Firebase.js';
 
 
 const Header = () => {
-    // const newContext =useContext(AuthContext)
+    
     const shoppingContext = useContext(ShoppingContext)
     const {basket,user} = shoppingContext
 
@@ -45,7 +45,7 @@ const Header = () => {
                     </Link>)} */}
                     <Link to={!user && "/login"}>
                         <div className='header_option' onClick={handleAuthentication}>
-                            <span className='header_optionOne'>Hello {!user?"Guest" : user.email}</span>
+                            <span className='header_optionOne'>Hello {!user? "Guest" : user.email}</span>
                             <span className='header_optionTwo'>{user? "Sign Out": "Sign In"}</span>
                         </div>
                     </Link>

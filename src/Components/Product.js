@@ -27,7 +27,7 @@ const Product = ({id,image,title,rating,price}) => {
             </div>
             <p className='product_price'>{price}</p>
         </div>
-        <button className="product_button" onClick={addToBasketHandler}>Add to Basket</button>
+        <button className="product_button" >Add to Basket</button>
     </div>
   )
 }
